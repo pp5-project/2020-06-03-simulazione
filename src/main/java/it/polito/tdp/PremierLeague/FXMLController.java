@@ -44,16 +44,23 @@ public class FXMLController {
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
-
+    	Double goal=Double.parseDouble(txtGoals.getText());
+    	model.CreaGrafo(goal);
+    	txtResult.appendText(model.nVertici()+" "+model.nArchi()+"\n");
+    	btnDreamTeam.setDisable(false);
     }
 
     @FXML
     void doDreamTeam(ActionEvent event) {
+    	int K=Integer.parseInt(txtK.getText());
+    	txtResult.appendText(model.percorso(K)+"\n");
 
     }
 
     @FXML
     void doTopPlayer(ActionEvent event) {
+    	txtResult.appendText(model.battuti()+"\n");
+    	txtResult.appendText("TOP PLAYER:"+model.getTop());
 
     }
 
@@ -70,5 +77,6 @@ public class FXMLController {
     
     public void setModel(Model model) {
     	this.model = model;
+    	btnDreamTeam.setDisable(true);
     }
 }
